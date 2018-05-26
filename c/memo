@@ -1,0 +1,111 @@
+
+Case by case
+a*b
+-EEC_data = null
+-EEC_relation is removed
+
+a-b
+-eec_data = a
+-eec_relation is removed
+
+a/\b
+-eec_data = a b
+-eec_relation is kept
+-priority of eec_relation is kept
+
+a\/b
+-eec_data = a b
+-eec_relation is kept
+-priority of eec_relation is kept
+
+-----------------------------------------------------------------------------
+
+Example:
+
+EEC:
+(1*2 1)(2 3 4)(4 5-6)
+
+EEC_Data:
+1 2 1 2 3 4 4 5 6
+
+EEC_Relation:
+*(200) \/(100) /\(000) \/(100) \/(100) /\(000) \/(100) -(100)
+
+
+The HB of this EEC should be:
+[1][2, 3, 4][4, 5]
+
+Analysis each EEC_Relation:
+*(200)
+EEC_Data:
+null 1 2 3 4 4 5 6
+EEC_Relation:
+\/(100) /\(000) \/(100) \/(100) /\(000) \/(100) -(100)
+
+\/(100)
+EEC_Data:
+null 1 2 3 4 4 5 6
+EEC_Relation:
+\/(100) /\(000) \/(100) \/(100) /\(000) \/(100) -(100)
+
+/\(000)
+EEC_Data:
+null 1 2 3 4 4 5 6
+EEC_Relation:
+\/(100) /\(000) \/(100) \/(100) /\(000) \/(100) -(100)
+
+\/(100)
+EEC_Data:
+null 1 2 3 4 4 5 6
+EEC_Relation:
+\/(100) /\(000) \/(100) \/(100) /\(000) \/(100) -(100)
+
+/\(000)
+EEC_Data:
+null 1 2 3 4 4 5 6
+EEC_Relation:
+\/(100) /\(000) \/(100) \/(100) /\(000) \/(100) -(100)
+
+\/(100)
+EEC_Data:
+null 1 2 3 4 4 5 6
+EEC_Relation:
+\/(100) /\(000) \/(100) \/(100) /\(000) \/(100) -(100)
+
+-(100)
+EEC_Data:
+null 1 2 3 4 4 5 
+EEC_Relation:
+\/(100) /\(000) \/(100) \/(100) /\(000) \/(100)
+
+-remove null
+EEC_Data:
+1 2 3 4 4 5 
+EEC_Relation:
+/\(000) \/(100) \/(100) /\(000) \/(100)
+
+-Result of HB
+--Mathematical expression
+ 1/\[2 \/ 3 \/ 4] /\ [ 4 \/ 5 ]
+--Readable expression
+ [1] [2, 3 ,4] [4, 5]
+
+-----------------------------------------------------------------------------
+About the Data structure
+Mathematical_symble: **symble:
+
+EEC_data: **int
+EEC_symble: Mathematical_symble
+
+HB_data: **int
+HB_symble: Mathematical_symble
+
+strucure Mathematical_symble:
+{
+	char symble;
+	int priority;
+}
+
+
+
+
