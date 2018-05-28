@@ -1,12 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "post_fix.h"
 
-
-typedef struct _tag_stack_
-{
-    char a[20];
-    int top;
-}Sqstack;
 
 
 Sqstack* InitStack(){
@@ -44,6 +39,7 @@ int Pop(Sqstack* stack, char* data){
     return 1;
 }
 
+/* add c to the end of str */
 char* strcat_c(char* str, char c){
 
     int len = strlen(str);
@@ -104,9 +100,3 @@ char* PostFix (char* eec){
 }
 
 
-int main()
-{
-    char* eec = "(1 1-2)(2 2-3)(4 5)(6)";
-    printf("%s\n", PostFix(eec));
-
-}
